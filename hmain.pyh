@@ -1,0 +1,7 @@
+
+print("in percobaan ")
+
+panggil = Coba("polah", "karepmu")
+
+print(panggil.gabung())
+

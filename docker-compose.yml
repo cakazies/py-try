@@ -1,0 +1,26 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - postgresql-volume:/var/lib/postgresql/data
+
+  py-try:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./py-try
+    command: ./entrypoint.sh
+    environment:
+      - ALLOWED_HOSTS_PUSH=py-try
+
+volumes:
+  postgresql-volume: # local to Linux, but in Windows it is not accessible
+
+networks:
+  default:
+    name: bootcampxiv
